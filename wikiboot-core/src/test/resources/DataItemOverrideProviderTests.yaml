@@ -1,0 +1,18 @@
+---
+title: some title
+key: oldValue
+key: oldValue
+list:
+  - oldValue
+  - someOtherValue
+nestedList:
+  - oldValue
+  - someOtherValue
+  -
+    - oldValue
+    - someOtherValue
+nestedObject:
+  v1: oldValue
+  nested:
+    v2: oldValue
+    v3: otherValue

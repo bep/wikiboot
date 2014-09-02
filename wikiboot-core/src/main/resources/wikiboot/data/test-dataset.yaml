@@ -1,0 +1,62 @@
+---
+name: John Coltrane
+birth: 1926-9-23
+death: 1967-7-17
+nationality: USA
+instrument: saxophone
+root:
+  val1:
+    val1name: Valle Name
+    val11:
+      name: Teddy
+      location: London
+    val12:
+          name: Ronny
+          location: Oslo
+          settings:
+            - v1
+            - v2:
+              - v21
+              - v23
+    val13: boogie
+occupations:
+  - musician
+  - composer
+  - bandleader
+styles:
+  - bebop
+  - hard bop
+collabrators:
+  - Miles Davis
+  - Thelonious Monk
+---
+name: Johnny Hodges
+birth: 1906-7-25
+death: 1970-5-11
+nationality: USA
+instrument: alto saxophone
+occupations:
+  - saxophonist
+  - clarinetist
+styles:
+  - swing
+  - mainstream jazz
+collabrators:
+  - Duke Ellington
+  - Sidney Bechet
+---
+name: Sidney Bechet
+birth: 1897-5-14
+death: 1959-5-14
+nationality: USA
+instrument: saxophone
+occupations:
+  - saxophonist
+  - clarinetist
+  - composer
+styles:
+  - jazz
+  - dixieland
+collabrators:
+  - Louis Armstrong
+
