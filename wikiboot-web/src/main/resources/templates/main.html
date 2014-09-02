@@ -1,0 +1,52 @@
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layout">
+<head>
+    <title>Main</title>
+</head>
+<body>
+<div layout:fragment="content" id="container" class="container" ng-controller="CodeTabCtrl as codeTabs">
+
+    <div>
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="codeTabs.closeAlert(alert)">
+            <h3>{{alert.msg.title}} ({{alert.msg.status}})</h3>
+            {{alert.msg.detail}}
+        </alert>
+    </div>
+
+    <div class="wb-document-tabs">
+        <tabset>
+            <tab ng-repeat="tab in codeTabs.tabs" select="codeTabs.selected(tab)">
+                <tab-heading>
+                    <i class="fa {{tab.icon}} fa-fw"></i> {{tab.title}}
+                </tab-heading>
+                <div ng-switch="tab.content" class="wb-tab-content">
+                    <div ng-switch-when="editor">
+                        <wb-code-editor pane="tab"></wb-code-editor>
+                    </div>
+                    <div ng-switch-when="preview" class="wb-wiki-preview">
+                        <wb-preview pane="tab"></wb-preview>
+                    </div>
+                    <div ng-switch-when="dataItem" class="wb-wiki-item">
+                        <wb-json-human options="{data: tab.data.model, flatten: true}"></wb-json-human>
+                    </div>
+                    <div ng-switch-default>NA</div>
+                </div>
+            </tab>
+            <li>
+                <div class="controls ng-cloak" >
+                    <pagination total-items="codeTabs.pages.totalItems" ng-model="codeTabs.pages.currentPage"
+                                ng-change="codeTabs.pageChanged()" items-per-page="1"></pagination>
+                </div>
+            </li>
+            <div class="pull-right">
+                <a th:href="@{/admin}" href="/">Admin</a>
+            </div>
+        </tabset>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Wiki preview!</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="template-preview">
+        <h2>Wiki</h2>
+
+        <div class="wb-panel">
+            <pre><span th:text="${template.output}"></span></pre>
+        </div>
+    </div>
+    <div class="wiki-preview">
+        <h2>Preview</h2>
+
+        <div class="wb-panel">
+            <span th:utext="${wikiPreview.text}">Preview of article</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

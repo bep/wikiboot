@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+        >
+<head>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Wikiboot</title>
+    <meta id="Viewport" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/wboot.png}"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link th:if="${siteEnv.useLessJs}" rel="stylesheet/less" type="text/css" th:href="@{/less/style.less}"/>
+    <script th:if="${siteEnv.useLessJs}" src="/lib/less/dist/less-1.7.3.min.js" type="text/javascript"></script>
+    <link th:if="${siteEnv.useLessCompiler}" rel="stylesheet" type="text/css" th:href="@{/lib/dev/css/style.css}"/>
+    <link th:unless="${siteEnv.development}" rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script data:curl-run="@{/run.js}" th:src="@{/lib/curl/src/curl.js}" async></script>
+</head>
+<body class="ng-cloak">
+<div class="viewport" layout:fragment="content">
+    Content goes here ...
+</div>
+</body>
+<script th:if="${siteEnv.useLiveReload}" src="//localhost:35729/livereload.js"></script>
+
+</html>

@@ -1,0 +1,37 @@
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layout">
+<head>
+    <title>Admin</title>
+</head>
+<body>
+<div layout:fragment="content" id="container" class="container" ng-controller="ManagerTabCtrl as managerTabs">
+
+    <div>
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="managerTabs.closeAlert(alert)">
+            <h3>{{alert.msg.title}} ({{alert.msg.status}})</h3>
+            {{alert.msg.detail}}
+        </alert>
+    </div>
+
+    <div class="wb-management-tabs">
+        <tabset>
+            <tab ng-repeat="tab in managerTabs.tabs" select="managerTabs.selected(tab)">
+                <tab-heading>
+                    <i class="fa {{tab.icon}} fa-fw"></i> {{tab.title}}
+                </tab-heading>
+                <div class="wb-tab-content">
+                    <wb-json-human options="{data: tab.data, flatten: tab.flatten}"></wb-json-human>
+                </div>
+            </tab>
+            <div class="pull-right">
+                <a th:href="@{/}" href="/">Main</a>
+            </div>
+        </tabset>
+    </div>
+
+</div>
+
+</body>
+</html>
