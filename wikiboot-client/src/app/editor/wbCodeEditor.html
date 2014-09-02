@@ -1,0 +1,31 @@
+<div class="wb-code-editor">
+    <div
+            ng-model="pane.data.content"
+            ui-ace="{
+  useWrapMode : true,
+  showGutter: false,
+  theme:'textmate',
+  mode: 'ftl',
+  onLoad: editor.aceLoaded,
+  onChange: editor.aceChanged,
+  onBlur: editor.aceBlur
+}" readonly="{{editor.state.readonly}}"></div>
+    <div class="form-group">
+
+        <button type="button" class="btn" ng-model="editor.state.readonly"
+                ng-click="editor.toggleReadOnly()"
+                popover="I appeared on mouse enter!" popover-trigger="mouseenter"
+                popover-placement="right">
+            <i class="fa fa-{{editor.state.readonly ? 'lock' : 'unlock'}} fa-fw"></i>
+            {{editor.state.readonly
+            ? 'Unlock' :
+            'Lock'}}
+        </button>
+        <button type="button" ng-disabled="!editor.state.changed" class="btn btn-primary"
+                ng-model="editor.state.changed"
+                ng-click="editor.save()">
+            <i class="fa fa-save fa-fw"></i> {{editor.state.changed ? 'Save' :
+            'Saved'}}
+        </button>
+    </div>
+</div>
