@@ -1,0 +1,120 @@
+def vJavaLang = '1.8'
+def ideaLanguageLevel = 'JDK_1_8'
+def javaProjects = [project(':wikiboot-web'), project(':wikiboot-core')]
+def bootProjects = javaProjects - project(':wikiboot-core')
+def gradleDir = "${rootProject.rootDir}/gradle"
+
+wrapper.gradleVersion = '1.12'
+
+buildscript {
+
+    ext {
+        springRepo = 'http://repo.spring.io/libs-release'
+        springRepoSnaps = 'http://repo.spring.io/libs-snapshot'
+        springRepoMiles = 'http://repo.spring.io/milestone'
+        springLoadedVersion = '1.2.1.BUILD-SNAPSHOT'
+        //      springBootVersion = '1.1.4.RELEASE'
+//        springVersion = '4.1.0.BUILD-SNAPSHOT'
+        springBootVersion = '1.2.0.BUILD-SNAPSHOT'
+    }
+
+    repositories {
+        maven { url springRepo }
+        maven { url springRepoSnaps }
+        maven { url springRepoMiles }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath("org.springframework:springloaded:${springLoadedVersion}")
+    }
+}
+
+
+
+configure(allprojects) {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    if (project.parent == null) {
+        idea {
+            project {
+                ipr {
+                    withXml {
+                        it.asNode().component.find { it.@name == 'ProjectRootManager' }.@languageLevel = ideaLanguageLevel
+                    }
+                }
+            }
+        }
+    }
+
+    idea {
+
+
+        module {
+            inheritOutputDirs = false
+            outputDir = file("$buildDir/classes/main/")
+
+            excludeDirs += [
+                    file('bin'), // containing build artifacts from Eclipse (if any)
+                    file('work'), //    containing transient artifacts used by embedded Tomcat
+                    file('logs'), // containing app logs written by embedded Tomcat
+                    file('data'), // containing logs and data written by elasticsearch
+                    file('.settings') // containing intentionally checked-in Eclipse metadata
+            ]
+
+
+        }
+
+    }
+
+
+}
+
+configure(javaProjects) {
+    apply plugin: 'java'
+    apply from: "$gradleDir/integrationTest.gradle"
+
+    targetCompatibility = vJavaLang
+    sourceCompatibility = vJavaLang
+
+    repositories {
+        maven { url springRepo }
+        maven { url springRepoSnaps }
+        maven { url springRepoMiles }
+    }
+
+    dependencies {
+        compile 'org.slf4j:slf4j-api'
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    configurations {
+        // replaced with jcl-over-slf4j
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+        // replaced with log4j-over-slf4j
+        all*.exclude group: 'log4j', module: 'log4j'
+        // replaced with Hikari
+        all*.exclude group: 'org.apache.tomcat', module: 'tomcat-jdbc'
+
+    }
+
+    // Ensure that all Gradle-compiled classes are available to Eclipse's
+    // classpath.
+    eclipseClasspath.dependsOn testClasses
+
+    eclipseJdt.onlyIf { false }
+    cleanEclipseJdt.onlyIf { false }
+}
+
+configure(bootProjects) {
+    apply plugin: 'spring-boot'
+
+    springBoot.backupSource = false
+}
+
+
+
+
+
+

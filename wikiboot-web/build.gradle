@@ -1,0 +1,54 @@
+
+springBoot.mainClass = 'wikiboot.App'
+version = 0.1
+
+applicationDefaultJvmArgs = [
+        // exclude problematic classes for Spring Loaded
+        "-Dspringloaded.exclusions=wikiboot.render.DataSetRenderer"
+]
+
+
+dependencies {
+    def vHttpClient = '4.3'
+
+    compile project(':wikiboot-core')
+    compile project(':wikiboot-client')
+
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile 'org.eclipse.jetty:jetty-webapp:9.+'
+
+    //compile "org.springframework:spring-websocket"
+    //compile 'org.eclipse.jetty:jetty-jsp:9.+'
+    //compile "org.springframework.boot:spring-boot-starter-websocket"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    // compile "org.springframework.boot:spring-boot-starter-security"
+   // compile "org.springframework.security:spring-security-acl"
+    // Thymeleaf is used as the template engine for serving HTML
+    //compile 'org.thymeleaf:thymeleaf-spring4'
+    //compile 'org.thymeleaf:thymeleaf'
+    compile 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    compile 'com.github.mxab.thymeleaf.extras:thymeleaf-extras-data-attribute:1.3'
+    //compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3'
+
+    // nekohtml is required for thymeleaf's LEGACYHTML5 mode
+    runtime 'net.sourceforge.nekohtml:nekohtml:1.9.15'
+
+    // REST exception handling
+    compile('cz.jirutka.spring:spring-rest-exception-handler:1.0.1')
+
+    // for use in serving redirects; see urlrewrite.xml
+    //compile 'org.tuckey:urlrewritefilter:4.0.3'
+
+    // for use in mocking http interactions
+    testCompile "org.springframework:spring-test"
+
+    // testing with HTMLUnit
+    testCompile 'net.sourceforge.htmlunit:htmlunit:2.+'
+
+    // pick up common test utility classes
+    testCompile project(':wikiboot-core').sourceSets.testUtil.output
+}
+

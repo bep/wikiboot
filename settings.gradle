@@ -1,0 +1,3 @@
+rootProject.name = 'wikiboot'
+
+include 'wikiboot-core', 'wikiboot-web', 'wikiboot-client'
