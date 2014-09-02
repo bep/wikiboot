@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+- oraclejdk8
+
+node_js:
+- '0.10'
+
+script:
+- './gradlew check'
+
