@@ -1,0 +1,65 @@
+{
+  "name": "wikiboot",
+  "version": "0.0.1",
+  "dependencies": {
+    "curl": "0.8.10",
+    "jquery": "2.0.3",
+    "bootswatch": "~3.2.0",
+    "less": "1.7.3",
+    "angular": "~1.2.21",
+    "ace-builds": "~1.1.5",
+    "angular-ui-ace": "bower",
+    "angular-bootstrap": "~0.11.0",
+    "restangular": "~1.4.0",
+    "angular-sanitize": "~1.2.21",
+    "angular-loading-bar": "~0.5.0",
+    "json-human": "*",
+    "crel": "*"
+  },
+  "devDependencies": {},
+  "overrides": {
+    "jquery": {
+      "ignore": [
+        "build/**",
+        "speed/**",
+        "src/**",
+        "test/**"
+      ]
+    },
+    "bootstrap": {
+      "ignore": [
+        "fonts/**",
+        "grunt/**",
+        "js/**",
+        "less/**",
+        "test-infa/**"
+      ]
+    },
+    "less": {
+      "ignore": [
+        "gradle/**",
+        "gradle*",
+        "dist/less-rhino*",
+        "dist/lessc-rhino*",
+        "dist/less-1.[0-6]*"
+      ]
+    },
+    "ace-builds": {
+      "ignore": [
+        "demo/**",
+        "src/**",
+        "src-min/snippets/**",
+        "src/**",
+        "src-noconflict/**",
+        "src-min/**",
+        "textarea/**"
+      ]
+    },
+    "angular-ui-ace": {
+      "ignore": []
+    }
+  },
+  "resolutions": {
+    "angular": "1.2.22"
+  }
+}
