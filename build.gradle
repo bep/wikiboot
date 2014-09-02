@@ -4,7 +4,7 @@ def javaProjects = [project(':wikiboot-web'), project(':wikiboot-core')]
 def bootProjects = javaProjects - project(':wikiboot-core')
 def gradleDir = "${rootProject.rootDir}/gradle"
 
-wrapper.gradleVersion = '1.12'
+wrapper.gradleVersion = '2.0'
 
 buildscript {
 
@@ -27,6 +27,7 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath("org.springframework:springloaded:${springLoadedVersion}")
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
     }
 }
 
@@ -74,6 +75,8 @@ configure(allprojects) {
 configure(javaProjects) {
     apply plugin: 'java'
     apply from: "$gradleDir/integrationTest.gradle"
+    apply plugin: 'jacoco'
+    apply plugin: 'com.github.kt3k.coveralls'
 
     targetCompatibility = vJavaLang
     sourceCompatibility = vJavaLang
@@ -83,6 +86,14 @@ configure(javaProjects) {
         maven { url springRepoSnaps }
         maven { url springRepoMiles }
     }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true // coveralls plugin depends on xml format report
+            html.enabled = true
+        }
+    }
+
 
     dependencies {
         compile 'org.slf4j:slf4j-api'
@@ -112,6 +123,7 @@ configure(bootProjects) {
 
     springBoot.backupSource = false
 }
+
 
 
 
