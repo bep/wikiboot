@@ -1,4 +1,4 @@
-wikiboot
+wikiboot [![Build Status](https://travis-ci.org/bjornerik/wikiboot.svg?branch=master)](https://travis-ci.org/bjornerik/wikiboot)
 ========
 
 ## Work In Progress
