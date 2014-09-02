@@ -1,0 +1,58 @@
+@import "../lib/bootstrap/less/bootstrap.less";
+@import "../lib/bootswatch/paper/variables.less";
+@import "../lib/bootswatch/paper/bootswatch.less";
+@import "wiki-preview.less";
+@import "wb-loading-bar.less";
+@import "json-human.less";
+
+@images: "../img";
+@font-size-base: 14px;
+
+.ng-cloak { display:none !important; }
+
+
+.wb-border-tab-content {
+  border-left: #E7E7E7 1px solid; // todo find variable
+  border-bottom: #E7E7E7 1px solid; // todo find variable
+  border-right: #E7E7E7 1px solid; // todo find variable
+}
+
+.wb-document-tabs {
+  .controls {
+    padding-left: 20px;
+    ul.pagination {
+      margin: 8px 0 0;
+    }
+  }
+}
+body {
+  padding: 20px;
+}
+
+.wb-human-json-view {
+  font-size: 12px;
+}
+
+.template-preview {
+
+}
+
+.wb-panel {
+  .well();
+}
+
+.wb-tab-content {
+  .make-sm-column(12);
+  .wb-border-tab-content();
+  padding: 10px;
+}
+
+.ace_editor {
+  height: 400px;
+  margin-bottom: 20px;
+
+  .ace_content {
+    //padding: 100px;
+  }
+}
+
