@@ -1,0 +1,86 @@
+project:
+  artifactId: wikiboot
+  name: wikiboot
+  version: X.X.X.X
+  description: wikiboot
+  dev:
+    use-less-js: false # false -> using LESS gulp compiler in dev, see gulpfile.js
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+  spring:
+    profiles: ${spring.profiles.active:default}
+
+management:
+  context-path: /manage
+
+error:
+  whitelabel:
+    enabled: false
+
+spring:
+  main:
+    sources: wikiboot.App
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jpa:
+    show-sql: false
+    hibernate:
+      #naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+      ddl-auto: create
+
+security:
+  basic:
+    enabled: false
+  require_ssl: false
+  ignored: 
+    - /bootstrap/**
+    - /bootstrap-datetimepicker/**
+    - /css/**
+    - /font-awesome/**
+    - /img/**
+    - /js/**
+    - /error
+    - /500
+    - /404
+    - /project_metadata/**
+  headers:
+    hsts: domain
+  user:
+    password: ${ADMIN_PASSWORD:}
+
+---
+
+spring:
+  profiles: staging,production
+security:
+  require_ssl: true
+
+---
+
+spring:
+  profiles: development
+  datasource:
+    platform: development
+  cache:
+    timetolive: 0
+  jpa:
+      show-sql: false
+      generate-ddl: true
+      hibernate:
+        ddl-auto: create
+
+---
+
+spring:
+  profiles: staging
+
+---
+
+spring:
+  profiles: production
