@@ -35,7 +35,6 @@ configure(allprojects) {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
     apply plugin: 'jacoco'
-    apply plugin: 'com.github.kt3k.coveralls'
 
     repositories {
         maven { url springRepo }
@@ -115,6 +114,16 @@ configure(bootProjects) {
     apply plugin: 'spring-boot'
 
     springBoot.backupSource = false
+}
+
+configure(rootProject) {
+    apply plugin: 'com.github.kt3k.coveralls'
+
+    javaProjects.each {
+        coveralls.sourceDirs +=  it.sourceSets.main.java.srcDirs
+    }
+
+    logger.info('Updated Coveralls sourceDirs: ' + coveralls.sourceDirs)
 }
 
 task jacocoRootReport(type: JacocoReport) {
