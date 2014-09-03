@@ -1,4 +1,4 @@
-wikiboot [![Build Status](https://travis-ci.org/bjornerik/wikiboot.svg?branch=master)](https://travis-ci.org/bjornerik/wikiboot)
+wikiboot [![Build Status](https://travis-ci.org/bjornerik/wikiboot.svg?branch=master)](https://travis-ci.org/bjornerik/wikiboot) [![Coverage Status](https://coveralls.io/repos/bjornerik/wikiboot/badge.png)](https://coveralls.io/r/bjornerik/wikiboot)
 ========
 
 ## Work In Progress
