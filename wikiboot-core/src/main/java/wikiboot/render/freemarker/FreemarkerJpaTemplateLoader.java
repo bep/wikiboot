@@ -32,7 +32,7 @@ public class FreemarkerJpaTemplateLoader implements TemplateLoader {
 
         // Strip locale for now
         String trimmedName = name.contains("_") ? name.substring(0, name.indexOf("_")) : name;
-        Template template = templateRepository.getOne(Long.valueOf(trimmedName));
+        Template template = templateRepository.findOne(Long.valueOf(trimmedName));
         if (template == null) {
             logger.warn("No template found with id " + name);
             throw new ResourceNotFound("template", name);

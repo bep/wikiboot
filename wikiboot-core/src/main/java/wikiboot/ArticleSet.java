@@ -1,7 +1,6 @@
 package wikiboot;
 
 import org.javatuples.KeyValue;
-import wikiboot.render.ValueOverride;
 import wikiboot.support.BaseEntity;
 
 import javax.persistence.*;
@@ -77,7 +76,7 @@ public class ArticleSet extends BaseEntity {
         if (this.valueOverrides == null) {
             this.valueOverrides = new HashSet<>();
         }
-        this.valueOverrides.add(ValueOverride.of(propertyPath, oldValue, newValue));
+        this.valueOverrides.add(ValueOverride.of(this, propertyPath, oldValue, newValue));
     }
 
     @Transient

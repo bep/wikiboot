@@ -6,7 +6,7 @@ import wikiboot.Article;
 import wikiboot.ArticleSet;
 import wikiboot.Template;
 import wikiboot.TemplateType;
-import wikiboot.render.ValueOverride;
+import wikiboot.ValueOverride;
 import wikiboot.test.AbstractIntegrationTests;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -43,7 +43,7 @@ public class RepositoryIntegrationTests extends AbstractIntegrationTests {
         assertThat(savedArticleSet.getLocalTemplate().getContent(), is(savedArticleSet.getTemplate().getContent()));
         assertThat(savedArticleSet.getLocalTemplate().getType(), is(savedArticleSet.getTemplate().getType()));
         assertThat(savedArticleSet.getLocalTemplate().getId(), not(savedArticleSet.getTemplate().getId()));
-        assertThat(savedArticleSet.getValueOverrides(), hasItem(ValueOverride.of("aKey", "anOldValue", "aNewValue")));
+        assertThat(savedArticleSet.getValueOverrides(), hasItem(ValueOverride.of(articleSet, "aKey", "anOldValue", "aNewValue")));
 
     }
 

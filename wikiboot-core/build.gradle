@@ -35,6 +35,7 @@ dependencies {
 
     // for use of spring-test's MatcherAssertionErrors.*
     testCompile "org.springframework:spring-test"
+    testCompile "nl.jqno.equalsverifier:equalsverifier:1.+"
 }
 
 // Add test-util source directories to IDEA .iml files

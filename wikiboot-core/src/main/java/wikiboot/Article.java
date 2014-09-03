@@ -30,13 +30,6 @@ public class Article extends BaseEntity {
         this.content = content;
     }
 
-    public Article(String title, String content, Integer index, ArticleSet articleSet) {
-        this.title = title;
-        this.content = content;
-        this.index = index;
-        this.articleSet = articleSet;
-    }
-
     public String getTitle() {
         return title;
     }

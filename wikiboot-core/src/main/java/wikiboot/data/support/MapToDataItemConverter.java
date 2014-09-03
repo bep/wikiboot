@@ -15,6 +15,8 @@ public class MapToDataItemConverter implements Converter<Map<String, Object>, Da
 
     private static final String[] TITLE_KEYS = {"title", "name"};
 
+    static final String TITLE_NOT_FOUND = "TITLE_NOT_FOUND";
+
     @Override
     public DataItem convert(Map<String, Object> source) {
         String title = extractTitle(source);
@@ -32,6 +34,6 @@ public class MapToDataItemConverter implements Converter<Map<String, Object>, Da
                 }
             }
         }
-        return "TITLE_NOT_FOUND";
+        return TITLE_NOT_FOUND;
     }
 }
