@@ -34,7 +34,6 @@ public class ErrorConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        resolvers.add(exceptionHandlerExceptionResolver()); // resolves @ExceptionHandler
         resolvers.add(pathExcludingExceptionResolver());
         resolvers.add(restExceptionResolver());
     }
@@ -65,10 +64,4 @@ public class ErrorConfig extends WebMvcConfigurerAdapter {
         return m;
     }
 
-    @Bean
-    public ExceptionHandlerExceptionResolver exceptionHandlerExceptionResolver() {
-        ExceptionHandlerExceptionResolver resolver = new ExceptionHandlerExceptionResolver();
-        resolver.setMessageConverters(HttpMessageConverterUtils.getDefaultHttpMessageConverters());
-        return resolver;
-    }
 }
