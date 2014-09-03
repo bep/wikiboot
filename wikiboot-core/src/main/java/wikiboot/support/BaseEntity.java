@@ -1,5 +1,6 @@
 package wikiboot.support;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
@@ -50,6 +51,9 @@ public abstract class BaseEntity extends AbstractPersistable<Long> {
 
     @Override
     public String toString() {
-        return "id=" + getId() + ", uuid=" + getUuid();
+        return new ToStringBuilder(this, ShortToStringStyle.SHORT_TO_STRING_STYLE)
+                .append("id", getId())
+                .append("uuid", uuid)
+                .toString();
     }
 }

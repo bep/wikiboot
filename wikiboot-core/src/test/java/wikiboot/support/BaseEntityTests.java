@@ -29,12 +29,6 @@ public class BaseEntityTests {
         assertThat(t1.hashCode(), is(t1.getUuid().hashCode()));
     }
 
-    @Test
-    public void toStringFromBaseClass() throws Exception {
-        TestEntity t1 = new TestEntity("t");
-        assertThat(t1.toString(), is("id=null, uuid=" + t1.getUuid()));
-    }
-
     private static class TestEntity extends BaseEntity {
         String val;
 

@@ -1,7 +1,9 @@
 package wikiboot;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.javatuples.KeyValue;
 import wikiboot.support.BaseEntity;
+import wikiboot.support.ShortToStringStyle;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -93,11 +95,14 @@ public class ArticleSet extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ArticleSet{");
-        sb.append(super.toString()).append(", ");
-        sb.append("template=").append(getTemplate());
-        sb.append(", localTemplate=").append(getLocalTemplate());
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this, ShortToStringStyle.SHORT_TO_STRING_STYLE)
+                .appendSuper(super.toString())
+                .append("template", getTemplate())
+                .append("localTemplate", getLocalTemplate())
+                .append("articles", getArticles())
+                .append("valueOverrides", getValueOverrides())
+                .append("dataSet", getDataSet())
+                .append("overrides", getOverrides())
+                .toString();
     }
 }

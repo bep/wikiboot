@@ -1,6 +1,8 @@
 package wikiboot;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import wikiboot.support.BaseEntity;
+import wikiboot.support.ShortToStringStyle;
 
 import javax.persistence.*;
 
@@ -64,12 +66,14 @@ public class Article extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Article{");
-        sb.append(super.toString()).append(", ");
-        sb.append("index=").append(index);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", articleSet=").append(articleSet);
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this, ShortToStringStyle.SHORT_TO_STRING_STYLE)
+                .appendSuper(super.toString())
+                .append("title", title)
+                .append("content", content)
+                .append("index", index)
+                .append("articleSet", getArticleSet())
+                .toString();
     }
+
+
 }

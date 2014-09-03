@@ -1,6 +1,8 @@
 package wikiboot;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import wikiboot.support.BaseEntity;
+import wikiboot.support.ShortToStringStyle;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -60,11 +62,10 @@ public class Template extends BaseEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Template{");
-        sb.append(super.toString()).append(", ");
-        sb.append("type=").append(type);
-        sb.append(", content.length()='").append(content.length()).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this, ShortToStringStyle.SHORT_TO_STRING_STYLE)
+                .appendSuper(super.toString())
+                .append("type", type)
+                .append("content", content)
+                .toString();
     }
 }

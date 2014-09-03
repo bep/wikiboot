@@ -1,6 +1,8 @@
 package wikiboot;
 
 import jdk.nashorn.internal.ir.annotations.Immutable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import wikiboot.support.ShortToStringStyle;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -66,6 +68,16 @@ public class ValueOverride implements Serializable {
         if (!oldValue.equals(that.oldValue)) return false;
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ShortToStringStyle.SHORT_TO_STRING_STYLE)
+                .append("key", key)
+                .append("oldValue", oldValue)
+                .append("newValue", newValue)
+                .append("articleSet", articleSet)
+                .toString();
     }
 
     @Override
