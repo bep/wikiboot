@@ -1,11 +1,10 @@
 package wikiboot.support;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
@@ -21,6 +20,7 @@ import java.util.UUID;
  * @author Bjørn Erik Pedersen
  */
 @MappedSuperclass
+@JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class BaseEntity extends AbstractPersistable<Long> {
 
     @Column(nullable = false, unique = true)

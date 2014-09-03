@@ -12,8 +12,12 @@ import javax.persistence.Transient;
  * @author Bjørn Erik Pedersen
  */
 public class DataItem {
-    private final String title;
-    private final ModelMap model;
+    private String title;
+    private ModelMap model;
+
+    private DataItem() {
+
+    }
 
     public DataItem(String title, ModelMap model) {
         this.title = title;

@@ -17,17 +17,19 @@ import java.io.Serializable;
 public class ValueOverride implements Serializable {
 
     @Id
-    private final String key;
+    private String key;
 
     @Id
-    private final String oldValue;
+    private String oldValue;
 
     private String newValue;
 
     @Id
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ARTICLE_SET_ID", nullable = false, updatable = false)
-    private final ArticleSet articleSet;
+    private ArticleSet articleSet;
+
+    private ValueOverride() {}
 
     private ValueOverride(ArticleSet articleSet, String propertyPath, String oldValue, String newValue) {
         this.articleSet = articleSet;

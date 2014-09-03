@@ -9,15 +9,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
+import wikiboot.DataItem;
 import wikiboot.MainConfig;
+import wikiboot.Template;
 
-import static org.hamcrest.core.Is.is;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
 
@@ -69,10 +76,49 @@ public class ControllerIntegrationTests {
 
     @Test
     public void templateFoundShouldReturnOK() throws Exception {
-        ResponseEntity<String> entity = restTemplate.getForEntity(getBaseUrl() + "/api/templates/1", String.class);
-
+        ResponseEntity<Template> entity = restTemplate.getForEntity(getBaseUrl() + "/api/templates/1", Template.class);
         assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(entity.getBody().getId(), is(1L));
     }
+
+    // Rendering tests
+
+    @Test
+    public void renderPreview() throws Exception {
+        ResponseEntity<RenderingController.ContentWrapper> entity =
+                restTemplate.getForEntity(getBaseUrl() + "/api/rendering/preview/1?index=0", RenderingController.ContentWrapper.class);
+        assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(StringUtils.hasText(entity.getBody().getContent()), is(true));
+    }
+
+    @Test
+    public void render() throws Exception {
+        // todo clear up the message converter issue with json+schema and TestRestTemplate's redirect and test the real return value from this (-> Article)
+        ResponseEntity<String> entity =
+                restTemplate.getForEntity(getBaseUrl() + "/api/rendering/render/1?index=0", String.class);
+        assertThat(entity.getStatusCode(), is(HttpStatus.FOUND));
+    }
+
+
+    @Test
+    public void dataSet() throws Exception {
+        ParameterizedTypeReference<List<DataItem>> typeRef = new ParameterizedTypeReference<List<DataItem>>() {
+        };
+        ResponseEntity<List<DataItem>> entity =
+                restTemplate.exchange(getBaseUrl() + "/api/rendering/dataSet", HttpMethod.GET, null, typeRef);
+        assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(entity.getBody().isEmpty(), is(false));
+    }
+
+    @Test
+    public void dataItem() throws Exception {
+        ResponseEntity<DataItem> entity = restTemplate.getForEntity(getBaseUrl() + "/api/rendering/dataSet/0", DataItem.class);
+        assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(entity.getBody().getModel().isEmpty(), is(false));
+    }
+
+
+    // Web ui tests
 
     @Test
     public void goToHomePage() throws Exception {
@@ -91,6 +137,5 @@ public class ControllerIntegrationTests {
     private String getBaseUrl() {
         return "http://localhost:" + this.port;
     }
-
 
 }

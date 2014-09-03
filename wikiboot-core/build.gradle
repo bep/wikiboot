@@ -9,6 +9,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa"
     compile("org.springframework.boot:spring-boot-starter-data-rest")
 
+    compile('org.apache.httpcomponents:httpclient:4.3.+')
+
     // datasource and connection pool dependencies
     //runtime 'org.postgresql:postgresql:9.2-1002-jdbc4'
     compile 'com.h2database:h2'
