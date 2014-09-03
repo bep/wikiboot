@@ -6,10 +6,12 @@ package wikiboot.render;
  */
 public class TemplateSource {
 
+    private final String id;
     private final String content;
     private final Long lastModified;
 
-    public TemplateSource(String content, Long lastModified) {
+    public TemplateSource(String id, String content, Long lastModified) {
+        this.id = id;
         this.content = content;
         this.lastModified = lastModified;
     }
@@ -29,15 +31,12 @@ public class TemplateSource {
 
         TemplateSource that = (TemplateSource) o;
 
-        if (!content.equals(that.content)) return false;
-        return lastModified.equals(that.lastModified);
+        return id.equals(that.id);
 
     }
 
     @Override
     public int hashCode() {
-        int result = content.hashCode();
-        result = 31 * result + lastModified.hashCode();
-        return result;
+        return id.hashCode();
     }
 }

@@ -37,7 +37,7 @@ public class FreemarkerJpaTemplateLoader implements TemplateLoader {
             logger.warn("No template found with id " + name);
             throw new ResourceNotFound("template", name);
         }
-        return new TemplateSource(template.getContent(), System.currentTimeMillis()); // todo
+        return new TemplateSource(template.getUuid(), template.getContent(), System.currentTimeMillis()); // todo
     }
 
     @Override
