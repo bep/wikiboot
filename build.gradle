@@ -26,16 +26,22 @@ buildscript {
 
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath("org.springframework:springloaded:${springLoadedVersion}")
+        //classpath("org.springframework:springloaded:${springLoadedVersion}")
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
     }
 }
 
-
-
 configure(allprojects) {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
+    apply plugin: 'jacoco'
+    apply plugin: 'com.github.kt3k.coveralls'
+
+    repositories {
+        maven { url springRepo }
+        maven { url springRepoSnaps }
+        maven { url springRepoMiles }
+    }
 
     if (project.parent == null) {
         idea {
@@ -50,8 +56,6 @@ configure(allprojects) {
     }
 
     idea {
-
-
         module {
             inheritOutputDirs = false
             outputDir = file("$buildDir/classes/main/")
@@ -64,28 +68,17 @@ configure(allprojects) {
                     file('.settings') // containing intentionally checked-in Eclipse metadata
             ]
 
-
         }
 
     }
-
-
 }
 
 configure(javaProjects) {
     apply plugin: 'java'
     apply from: "$gradleDir/integrationTest.gradle"
-    apply plugin: 'jacoco'
-    apply plugin: 'com.github.kt3k.coveralls'
 
     targetCompatibility = vJavaLang
     sourceCompatibility = vJavaLang
-
-    repositories {
-        maven { url springRepo }
-        maven { url springRepoSnaps }
-        maven { url springRepoMiles }
-    }
 
     jacocoTestReport {
         reports {
@@ -124,6 +117,25 @@ configure(bootProjects) {
     springBoot.backupSource = false
 }
 
+task jacocoRootReport(type: JacocoReport) {
+    dependsOn = [javaProjects.test, javaProjects.integrationTest]
+    // Gather execution data from all sub projects
+    // (change this if you e.g. want to calculate unit test/integration test coverage separately)
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    // Add all relevant source sets from the sub projects
+    javaProjects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+        xml.destination "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+        html.destination "${buildDir}/reports/jacoco/test"
+    }
+}
 
 
 
