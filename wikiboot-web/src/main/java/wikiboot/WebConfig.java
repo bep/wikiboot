@@ -28,7 +28,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(WebConfig.class);
 
-    private static final String[] STATIC_SUFFIXES = {"html", "js", "png", "jpg", "css", "less"};
+    private static final String[] STATIC_SUFFIXES = {"html", "js", "png", "jpg", "css", "less", "js.map"};
     private static final String[] STATIC_RESOURCE_PATTERNS = new String[STATIC_SUFFIXES.length];
 
     static {

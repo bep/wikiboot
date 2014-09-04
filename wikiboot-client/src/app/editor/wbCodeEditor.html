@@ -13,9 +13,7 @@
     <div class="form-group">
 
         <button type="button" class="btn" ng-model="editor.state.readonly"
-                ng-click="editor.toggleReadOnly()"
-                popover="I appeared on mouse enter!" popover-trigger="mouseenter"
-                popover-placement="right">
+                ng-click="editor.toggleReadOnly()">
             <i class="fa fa-{{editor.state.readonly ? 'lock' : 'unlock'}} fa-fw"></i>
             {{editor.state.readonly
             ? 'Unlock' :

@@ -13,6 +13,8 @@ define(['lodash', 'app/editor/module'], function (_, module) {
         }
     });
 
+    CodeEditorCtrl.$inject = ['$scope'];
+
     function CodeEditorCtrl($scope) {
 
         var vm = this;

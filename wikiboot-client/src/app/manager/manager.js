@@ -3,6 +3,7 @@
 define(['app/manager/module'], function (wbManager) {
 
     wbManager.service('managerService', managerService);
+    managerService.$inject = ['$http'];
 
     function managerService($http) {
 
@@ -15,7 +16,6 @@ define(['app/manager/module'], function (wbManager) {
     }
 
     wbManager.controller("ManagerTabCtrl", ManagerTabCtrl);
-
     ManagerTabCtrl.$inject = ['$scope', 'managerService', 'wbAlertService'];
 
     function ManagerTabCtrl($scope, managerService, alertService) {

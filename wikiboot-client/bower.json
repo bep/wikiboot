@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "curl": "0.8.10",
-    "jquery": "2.0.3",
     "bootswatch": "~3.2.0",
     "less": "1.7.3",
-    "angular": "~1.2.21",
+    "angular": "~1.2.23",
     "ace-builds": "~1.1.5",
     "angular-ui-ace": "bower",
     "angular-bootstrap": "~0.11.0",
@@ -18,21 +17,24 @@
   },
   "devDependencies": {},
   "overrides": {
-    "jquery": {
-      "ignore": [
-        "build/**",
-        "speed/**",
-        "src/**",
-        "test/**"
-      ]
-    },
     "bootstrap": {
       "ignore": [
-        "fonts/**",
-        "grunt/**",
-        "js/**",
-        "less/**",
-        "test-infa/**"
+        "*/**"
+      ]
+    },
+    "bootswatch": {
+      "ignore": [
+        "*/**"
+      ]
+    },
+    "curl": {
+      "ignore": [
+        "dist/**"
+      ]
+    },
+    "jquery": {
+      "ignore": [
+        "*/**"
       ]
     },
     "less": {
@@ -58,8 +60,5 @@
     "angular-ui-ace": {
       "ignore": []
     }
-  },
-  "resolutions": {
-    "angular": "1.2.22"
   }
 }

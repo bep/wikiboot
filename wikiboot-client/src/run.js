@@ -7,26 +7,15 @@ var baseUrl;
         loader: 'curl/loader/cjsm11'
     };
 
-    var angularModuleConfig = {
-        loader: 'curl/loader/cjsm11',
-        requires: [ 'angular' ]
-    };
 
     curl.config({
         baseUrl: baseUrl || '',
         packages: {
             app: { location: 'app', main: 'app' },
             utils: { location: 'app/common/utils', main: 'utils' },
-            //feature: { location: 'feature' },
-            //component: { location: 'component', config: cjsConfig },
-            //platform: { location: 'platform', config: cjsConfig },
             curl: { location: 'lib/curl/src/curl/' }
-            //when: { location: 'lib/when', main: 'when' },
-            //most: { location: 'lib/most', main: 'most', config: cjsConfig },
-            //poly: { location: 'lib/poly' }
         },
         paths: {
-            jquery: 'lib/jquery/jquery.min',
             angular: {
                 location: 'lib/angular/angular',
                 config: {
@@ -35,47 +24,47 @@ var baseUrl;
                 }
             },
             lodash: {
-                location: '/lib/lodash/dist/lodash.min'
+                location: 'lib/lodash/dist/lodash'
             },
             bootstrap: {
-                location: '/lib/bootstrap/dist/js/bootstrap.min',
+                location: 'lib/bootstrap/dist/js/bootstrap',
                 config: {
                     loader: 'curl/loader/cjsm11'
                 }
             },
             angularsanitize: {
-                location: '/lib/angular-sanitize/angular-sanitize.min',
+                location: 'lib/angular-sanitize/angular-sanitize',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular' ]
                 }
             },
             restangular: {
-                location: '/lib/restangular/src/restangular',
+                location: 'lib/restangular/dist/restangular',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular', 'lodash' ]
                 }
             },
             crel: {
-                location: '/lib/crel/crel.min',
+                location: 'lib/crel/crel',
                 config: {
                     loader: 'curl/loader/cjsm11'
                 }
             },
             jsonhuman: {
-                location: '/lib/json-human/src/json.human',
+                location: 'lib/json-human/src/json.human',
                 requires: [ 'crel' ]
             },
             angular_animate: {
-                location: '/lib/angular-animate/angular-animate.min',
+                location: 'lib/angular-animate/angular-animate',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular' ]
                 }
             },
             angular_loading_bar: {
-                location: '/lib/angular-loading-bar/build/loading-bar.min',
+                location: 'lib/angular-loading-bar/build/loading-bar',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular', 'angular_animate' ]
@@ -89,14 +78,14 @@ var baseUrl;
                 }
             },
             angular_ui_ace: {
-                location: 'lib/angular-ui-ace/ui-ace.min',
+                location: 'lib/angular-ui-ace/ui-ace',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular', 'ace' ]
                 }
             },
             angular_bootstrap: {
-                location: 'lib/angular-bootstrap/ui-bootstrap-tpls.min',
+                location: 'lib/angular-bootstrap/ui-bootstrap-tpls',
                 config: {
                     loader: 'curl/loader/cjsm11',
                     requires: [ 'angular']
@@ -109,8 +98,7 @@ var baseUrl;
 
 
     function start(main) {
-        // tell the jquery migrate plugin to be quiet
-        //$.migrateMute = true;
+
     }
 
     function fail(ex) {

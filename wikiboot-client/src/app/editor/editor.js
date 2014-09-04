@@ -4,7 +4,7 @@ define(['app/editor/module'], function (wbEditor) {
 
     wbEditor.service('articleService', articleService);
 
-    //articleService.$inject = ['Restangular'];
+    articleService.$inject = ['Restangular'];
 
     function articleService(Restangular) {
 
@@ -45,9 +45,8 @@ define(['app/editor/module'], function (wbEditor) {
         };
 
         this.pages = pages;
-
-
     }
+
 
     wbEditor.controller("CodeTabCtrl", CodeTabCtrl);
 

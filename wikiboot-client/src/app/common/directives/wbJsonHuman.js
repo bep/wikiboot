@@ -12,6 +12,8 @@ define(['utils', 'app/common/module'], function (utils, module) {
         }
     });
 
+    ManageViewerCtrl.$inject = ['$scope', '$element'];
+
     function ManageViewerCtrl($scope, $element) {
 
         $scope.$watch('options.data', function (newValue, oldValue) {
@@ -24,4 +26,5 @@ define(['utils', 'app/common/module'], function (utils, module) {
             $element.children(1).replaceWith(utils.jsonToHtml($scope.options.data, $scope.options.flatten));
         }
     }
+
 });

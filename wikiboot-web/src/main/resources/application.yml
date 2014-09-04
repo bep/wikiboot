@@ -84,3 +84,5 @@ spring:
 
 spring:
   profiles: production
+  datasource:
+    platform: production

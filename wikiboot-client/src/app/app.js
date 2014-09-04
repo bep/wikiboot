@@ -2,10 +2,10 @@
 
 define(['angular', 'restangular', 'angular_loading_bar', './common/index', './editor/index', './manager/index'], function (angular) {
     return angular.module('wb', ['angular-loading-bar', 'wb.common', 'wb.editor', 'wb.manager'])
-        .config(function (RestangularProvider) {
+        .config(['RestangularProvider', function (RestangularProvider) {
             RestangularProvider.setBaseUrl("/api");
-        })
-        .run(function ($window) {
+        }])
+        .run(['$window', function ($window) {
 
             $window.log = function () {
                 log.history = log.history || [];   // store logs to an array for reference
@@ -16,7 +16,7 @@ define(['angular', 'restangular', 'angular_loading_bar', './common/index', './ed
             };
 
             $window.log("Starting app ...");
-        });
+        }]);
 
 });
 
