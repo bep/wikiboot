@@ -15,7 +15,7 @@ buildscript {
         springLoadedVersion = '1.2.1.BUILD-SNAPSHOT'
         //      springBootVersion = '1.1.4.RELEASE'
 //        springVersion = '4.1.0.BUILD-SNAPSHOT'
-        springBootVersion = '1.2.0.BUILD-SNAPSHOT'
+        springBootVersion = '1.2.0.M1'
     }
 
     repositories {
