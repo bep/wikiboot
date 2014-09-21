@@ -1,6 +1,5 @@
-'use strict';
-
 define(['utils', 'app/common/module'], function (utils, module) {
+    'use strict';
 
     return module.directive('wbJsonHuman', function () {
         return {

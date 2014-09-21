@@ -1,6 +1,6 @@
-'use strict';
-
 define(['lodash', 'jsonhuman', 'exports'], function (_, JsonHuman, exports) {
+
+    'use strict';
 
     // http://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objects
     function flattenJson(data) {

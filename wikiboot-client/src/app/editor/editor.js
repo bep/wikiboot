@@ -1,6 +1,5 @@
-'use strict';
-
 define(['app/editor/module'], function (wbEditor) {
+    'use strict';
 
     wbEditor.service('articleService', articleService);
 

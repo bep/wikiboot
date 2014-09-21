@@ -1,6 +1,6 @@
-'use strict';
-
 define(['app/common/module'], function (module) {
+
+    'use strict';
 
     return module.factory('wbAlertService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
         var alertService;

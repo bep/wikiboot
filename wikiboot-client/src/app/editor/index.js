@@ -1,4 +1,3 @@
-'use strict';
 
 define([
 // Intellij complains when using relative paths
@@ -7,4 +6,6 @@ define([
     'app/editor/wbPreview'
 
 ], function () {
+    'use strict';
+
 });

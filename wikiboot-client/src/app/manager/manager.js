@@ -1,6 +1,6 @@
-'use strict';
-
 define(['app/manager/module'], function (wbManager) {
+
+    'use strict';
 
     wbManager.service('managerService', managerService);
     managerService.$inject = ['$http'];

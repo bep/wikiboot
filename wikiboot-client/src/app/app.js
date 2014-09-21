@@ -1,6 +1,7 @@
-'use strict';
 
 define(['angular', 'restangular', 'angular_loading_bar', './common/index', './editor/index', './manager/index'], function (angular) {
+    'use strict';
+
     return angular.module('wb', ['angular-loading-bar', 'wb.common', 'wb.editor', 'wb.manager'])
         .config(['RestangularProvider', function (RestangularProvider) {
             RestangularProvider.setBaseUrl("/api");

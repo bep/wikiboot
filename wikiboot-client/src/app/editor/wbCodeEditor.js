@@ -1,6 +1,7 @@
-'use strict';
 
 define(['lodash', 'app/editor/module'], function (_, module) {
+
+    'use strict';
 
     return module.directive('wbCodeEditor', function () {
         return {

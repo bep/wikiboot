@@ -1,6 +1,6 @@
-'use strict';
-
 define(['app/editor/module'], function (module) {
+
+    'use strict';
 
     return module.directive('wbPreview', function () {
         return {
